@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+ <div id="templatemo_header">
+    	<div id="site_title"><h1>Web       Store</h1></div>
+        
+        <div id="header_right">
+            <ul id="language">
+                <li><a><img src="~/images/usa.png" alt="English" /></a></li>
+                <li><a><img src="~/images/china.png" alt="Chinese" /></a></li>
+                <li><a><img src="~/images/germany.png" alt="Germany" /></a></li>
+                <li><a><img src="~/images/india.png" alt="Indian" /></a></li>
+                <li>
+                @if (@ViewBag.name != null)
+                {<p>Hello, @Session["name"].ToString()</p>}
+               </li>
+            </ul>
+            <div class="cleaner">
+                @{if (@ViewBag.name == null)
+                {
+                <a href="~/Login/Login/0">Login as ADMIN</a>
+                <br/>
+                <a href="~/Login/Login/1">Login as Regular User</a>
+                <br/>
+                <a href="~/SignUp/SignUp">Sign Up</a>
+                }
+                else
+                {
+                        <a href="~/Home/Logout/1">Logout</a>
+                }}
+            </div>
+         </div> <!-- END -->
+    </div> <!-- END of header -->
+
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

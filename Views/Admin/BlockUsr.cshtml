@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<h3>Block User By changing its Password</h3>
+<br />
+<br />
+
+    <form action="~/Admin/BlockUser" method="post">
+        <div>
+            <label>Block a User Password</label><br />
+            User ID: <input type ="text" id="id" name ="id" /> <br />
+            <button type="button" id ="b1" value ="Check Details">Check Details Of User</button>
+           <div id="checking">Finding...</div>
+    <div id ="info">
+                      Name:   <label id="name"></label><br />
+                     Email:   <label id="email" ></label><br />
+              Phone Number:   <label id="phone" ></label><br />
+                  Password:   <label id="password" ></label><br />
+   Enter Blocking Password:   <input type="text" name="pass" /><br />
+    </div>
+    <div id="result"></div>
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checking').hide();
+            $('#info').hide();
+            $('#result').hide();
+            $('#b22').hide();
+            $('#b1').click(function () {
+                var ID = $('#id').val();
+
+                $('#info').hide();
+                $('#result').hide();
+                $('#checking').show();
+                $.getJSON("/Admin/GetUserDetails?ID=" + ID, function (data) {
+                    $('#checking').hide();
+                    if (data != null) {
+                        $('#info').show();
+                        $('#b22').show();
+                        $('#name').text(data.Name);
+                        $('#email').text(data.Email);
+                        $('#phone').text(data.PhoneNumber);
+                        $('#password').text(data.Password);
+                    }
+                    else {
+                        $('#result').show();
+                        $('#result').text("User Name is not in our Data Base");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+            <button type="submit" id="b22" >Confirm Block</button>
+        </div>
+    </form>

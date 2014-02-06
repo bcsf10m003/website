@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br />
+<br />
+<h3>Update your given product</h3>
+<br />
+<br />
+        <form action="~/Admin/UpdateProductData" method="post">
+        <div>
+            <label>Update Product Information</label><br />
+            Product ID: <input type ="text" id="pid" name ="id" /> <br />
+            <button type="button" id ="b01" value ="Check Details">Find Product</button>
+           <div id="finding">Finding...</div>
+    <div id ="infor">
+            Product Name        : <label id="n1"></label>     <input type ="text" name="Name"/> <br />
+            Product Price       : <label id="p1"></label>     <input type ="text" name ="Price"/> <br />
+            Product Description : <label id="d1"></label>     <input type ="text" name ="Description"/> <br />
+            Product Image: <input type ="file" name ="ImagePath"/> <br />
+    </div>
+    <div id="result1"></div>
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#finding').hide();
+            $('#infor').hide();
+            $('#result1').hide();
+            $('#b022').hide();
+            $('#b01').click(function () {
+                var ID = $('#pid').val();
+
+                $('#infor').hide();
+                $('#result1').hide();
+                $('#finding').show();
+                $.getJSON("/Admin/GetProductDetails?ID=" + ID, function (data) {
+                    $('#finding').hide();
+                    if (data != null) {
+                        $('#infor').show();
+                        $('#b022').show();
+                        $('#n1').text(data.Name);
+                        $('#p1').text(data.Price);
+                        $('#d1').text(data.Description);
+                        $('#infor').append("Product Image       : <img src='" + data.ImagePath + "'height='200px' width='200px''/>");
+                    }
+                    else {
+                        $('#result1').show();
+                        $('#result1').text("Product is not in our Data Base");
+                    }
+                });
+
+            });
+
+        });
+    </script>
+            <button type="submit" id="b022" >Surely, Update the information</button>
+        </div>
+    </form>

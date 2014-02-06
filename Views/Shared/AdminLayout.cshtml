@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+      @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+    <h1>Hello, @Session["admin"].ToString()</h1>
+
+</head>
+<body>
+    <h4><a href="~/Home/Logout/0">Logout</a></h4>
+        @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @RenderBody()
+</body>
+</html>

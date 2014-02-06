@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model New.Models.Product
+
+<br />
+<br />
+<h3>Add a New Product in the Data Base
+</h3>
+<br />
+<br />
+
+  
+    <form action="~/Admin/SaveNewProduct" method="post" enctype="multipart/form-data">
+        <div>
+            <label>Add a New Product To DataBase</label><br />
+            Product Name: @Html.TextBoxFor(m=>m.Name)
+             @Html.ValidationMessageFor(m=>m.Name)
+             <br />
+            Product Price: @Html.TextBoxFor(m=>m.Price) <br />
+             @Html.ValidationMessageFor(m=>m.Price)
+            Product Description: @Html.TextBoxFor(m=>m.Description)
+                         @Html.ValidationMessageFor(m=>m.Description) <br />
+            Product Image: <input type ="file" name ="ImagePath" value="Choose File"/> <br />
+            <button type="submit" >Add Product</button>
+        </div>
+    </form>
+
+
+    @Scripts.Render("~/bundles/jqueryval")

@@ -1,0 +1,134 @@
+﻿@model List<New.Models.Product>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Shopping Cart</title>
+<meta name="keywords" content="web store, shopping cart, free templates, ecommerce templates, CSS, HTML" />
+<meta name="description" content="Web Store, Shopping Cart, free CSS template by templatemo.com" />
+<link href="~/content/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="~/content/ddsmoothmenu.css" />
+
+<script type="text/javascript" src="~/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/scripts/ddsmoothmenu.js">
+
+/***********************************************
+* Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+<script type="text/javascript">
+
+ddsmoothmenu.init({
+	mainmenuid: "templatemo_menu", //menu DIV id
+	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+	classname: 'ddsmoothmenu', //class added to menu's outer DIV
+	//customtheme: ["#1c5a80", "#18374a"],
+	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+})
+
+</script>
+
+<script language="javascript" type="text/javascript">
+function clearText(field)
+{
+	if (field.defaultValue == field.value) field.value = '';
+	else if (field.value == '') field.value = field.defaultValue;
+}
+</script>
+
+</head>
+
+<body id="subpage">
+
+<div id="templatemo_wrapper">
+        <div id="site_title"><h1>Shopping Cart</h1></div> <br />
+    
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a href="~/Home/Index">Home</a></li>
+            <li><a href="~/Products/Products" class="selected">Products</a></li>
+            <li><a href="~/Home/About">About</a></li>
+            <li><a href="~/Checkout/Checkout">Checkout</a></li>
+            <li><a href="~/Home/Contact">Contact</a></li>
+        </ul>
+        <br style="clear: left" />
+    </div> <!-- end of templatemo_menu -->
+    
+    <div class="cleaner h20"></div>
+    <div id="templatemo_main_top"></div>
+    <div id="templatemo_main">
+    	
+        <div id="sidebar">
+        	<h3>Categories</h3>
+            <ul class="sidebar_menu">
+			    <li><a href="#">Aenean et dolor diam</a></li>
+                <li><a href="#">Aenean pulvinar</a></li>				
+                <li><a href="#">Cras bibendum auctor</a></li>
+                <li><a href="#">Donec sodales bibendum</a></li>				
+            	<li><a href="#">Etiam in tellus</a></li>
+                <li><a href="#">Hendrerit justo</a></li>     
+                <li><a href="#">Integer interdum</a></li>				
+                <li><a href="#">Maecenas a diam</a></li>
+				<li><a href="#">Nullam in semper</a></li>
+				<li><a href="#">Posuere in commodo</a></li>
+				<li><a href="#">Tincidunt leo</a></li>
+                <li><a href="#">Vestibulum blandit</a></li>
+			</ul>
+            <h3><a class="sidebar_title" href="http://www.mystockvector.com" title="vectors"  target="_blank">Newsletter</a></h3>
+            <p>Praesent aliquam mi id tellus pretium pulvinar in vel ligula.</p>
+            
+        </div> <!-- END of sidebar -->
+       
+        <div id="content">
+		
+        	<table width="700px" cellspacing="0" cellpadding="5">
+                   	  <tr bgcolor="#CCCCCC">
+                        	<th width="220" align="left">Image </th> 
+                        	<th width="180" align="left">Description </th> 
+                       	  	<th width="100" align="center">Name </th> 
+                        	<th width="60" align="right">Price </th> 
+                        	<th width="60" align="right">Total </th> 
+                        	<th width="90"> </th>
+                            
+                      </tr>
+                @{    
+                int i = 0;
+                int j = -1;
+                foreach(var x in Model){
+                    i = (int)(i + x.Price);
+                    j++;
+                    	<tr>
+                        	<td><img src="@x.ImagePath" alt="image 01" height="200px" width="200px"/></td> 
+                        	<td>@x.Description</td> 
+                            <td align="center">@x.Name</td>
+                            <td align="right">$@x.Price</td> 
+                            <td align="right">$@i</td>
+                            <td align="center"> <a href="~/Shoppingcart/RemoveItem/@j"><img src="~/images/remove_x.gif" alt="remove" /><br />Remove</a> </td>
+						</tr>
+                }
+                }
+					</table>
+                    <div style="float:right; width: 215px; margin-top: 20px;">
+                    
+                        <div class="checkout"><a href="~/Home/Checkout" class="more">Proceed to Checkout</a></div>
+                        <div class="cleaner h20"></div>
+                        <div class="continueshopping"><a href="~/Products/Products" class="more">Continue Shopping</a></div>
+                    	
+                    </div>
+            
+		</div>
+        <div class="cleaner"></div>
+    </div> <!-- END of main -->
+    
+</div>
+
+
+<script type='text/javascript' src='~/scripts/logging.js'></script>
+</body>
+</html>
